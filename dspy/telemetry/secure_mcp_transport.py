@@ -59,7 +59,7 @@ class SovereignMCPTransport:
                 if response.status_code == 200:
                     logger.info("[+] Data transaction verified and processed successfully.")
                     return response.json()
-                elif response.status_code in:
+                elif response.status_code in (401, 403):  # FIXED: Sealed the unassigned condition tuple
                     logger.error("[-] Monolith Rejection: Remote node failed cryptographic verification.")
                     raise PermissionError("[!] Access Denied: Remote boundary dropped signature handshake.")
                 else:
